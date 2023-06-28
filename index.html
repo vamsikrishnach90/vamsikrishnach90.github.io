@@ -1,1 +1,22 @@
-<h1>Hello World</h1>
+<html>
+<head>
+<title>Memory Leak: JQuery Sizzle</title>
+<style>
+body {
+    border: 5px solid green;
+    padding: 10px;
+    background: antiquewhite;
+}
+#parent-iframe {
+    width: 100%;
+    height: 600px;
+}
+</style>
+</head>
+<body>
+<h1>Top Window</h1>
+<div id="main-container">
+    <iframe id="parent-iframe" src="parent.html"></iframe>
+</div>
+</body>
+</html>

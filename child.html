@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Child Page</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+var tmp;
+function onbodyload() {
+    alert("Body Loaded >>");
+    tmp = document.getElementById("my-title");
+    $('div.msg-banner', window.parent.document).show();
+    // window.parent.document.querySelector("div.msg-banner").style.display = "block";
+}
+function f1() {
+    function Vamsi() {
+        for (let x = 0; x < 500000; x++) {
+            this["key" + x] = "value" + x;
+        }
+        for (let x = 0; x < 500000; x++) {
+            this["keyy" + x] = "valuee" + x;
+        }
+    };
+    let xyz = [];
+    for (let x = 0; x < 1; x++) {
+        xyz.push(new Vamsi());
+    }
+    tmp._VIEW_MODEL = xyz;
+}
+</script>
+<style>
+body {
+    background: lightpink;
+}
+</style>
+</head>
+<body onload="onbodyload()">
+<h1 id="my-title">Child Page</h1>
+<button onclick="f1()">Bombard the page!</button>
+</body>
+</html>

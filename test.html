@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Test Page</title>
+</head>
+<body>
+  <h2>Test API Calls</h2>
+
+  <button id="xhrBtn">Call API with XMLHttpRequest</button>
+  <button id="fetchBtn">Call API with fetch</button>
+
+  <pre id="output" style="margin-top:20px; background:#f5f5f5; padding:10px; border:1px solid #ddd;"></pre>
+
+  <script>
+    const apiUrl = "https://localhost:8443/rest-apis-for-chrome-extension/api";
+    const output = document.getElementById("output");
+
+    // Button 1 → XMLHttpRequest
+    document.getElementById("xhrBtn").addEventListener("click", () => {
+      output.textContent = "Calling API with XMLHttpRequest...";
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", apiUrl, true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            output.textContent = "XMLHttpRequest Response:\n" + xhr.responseText;
+          } else {
+            output.textContent = "XMLHttpRequest Error:\nStatus " + xhr.status;
+          }
+        }
+      };
+      xhr.send();
+    });
+
+    // Button 2 → fetch
+    document.getElementById("fetchBtn").addEventListener("click", () => {
+      output.textContent = "Calling API with fetch...";
+      fetch(apiUrl)
+        .then((res) => res.text())
+        .then((data) => {
+          output.textContent = "Fetch Response:\n" + data;
+        })
+        .catch((err) => {
+          output.textContent = "Fetch Error:\n" + err;
+        });
+    });
+  </script>
+</body>
+</html>

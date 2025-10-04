@@ -7,7 +7,12 @@
 </head>
 <body>
   <h2>Test API Calls</h2>
-
+  <textarea style="width: 800px;" rows="8" disabled>
+https://vamsikrishnach90.github.io/sample.json
+https://cdn.oracle.com:8443/rest-apis-for-chrome-extension/api
+https://localhost:8443/rest-apis-for-chrome-extension/api
+</textarea> <br />
+  <input type="text" id="url"> <br />
   <button id="xhrBtn">Call API with XMLHttpRequest</button>
   <button id="fetchBtn">Call API with fetch</button>
 
@@ -21,7 +26,7 @@
     document.getElementById("xhrBtn").addEventListener("click", () => {
       output.textContent = "Calling API with XMLHttpRequest...";
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", apiUrl, true);
+      xhr.open("GET", document.getElementById("url").value, true);
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -37,7 +42,7 @@
     // Button 2 → fetch
     document.getElementById("fetchBtn").addEventListener("click", () => {
       output.textContent = "Calling API with fetch...";
-      fetch(apiUrl)
+      fetch(document.getElementById("url").value)
         .then((res) => res.text())
         .then((data) => {
           output.textContent = "Fetch Response:\n" + data;
